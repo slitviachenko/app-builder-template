@@ -13,3 +13,8 @@ extension:
   name: dx/excshell/1
   operations:
     - view
+
+services:
+  - AnalyticsSDK
+  - CampaignStandard
+  - Runtime
