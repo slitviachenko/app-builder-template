@@ -10,9 +10,9 @@ categories:
 
 # metadata for a category
 extension:
-  name: dx/excshell/1
-  operations:
-    - view
+  -  id: dx/excshell/1
+     operations:
+       - view
 
 services:
   - AnalyticsSDK
