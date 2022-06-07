@@ -1,4 +1,5 @@
 # This is an App Builder install configuration
+# This file will exist in the root of the package as install.yml
 
 # we use json schema
 $schema: http://json-schema.org/draft-07/schema
@@ -6,15 +7,38 @@ $schema: http://json-schema.org/draft-07/schema
 $id: https://adobe.io/schemas/app-builder-templates/1
 
 categories:
-  - add-action
+  - action
+  - ui
 
-# metadata for a category
+# if the template implements an extension point, this top-level property is available
 extension:
-  -  id: dx/excshell/1
-     operations:
-       - view
+  serviceCode: dx/excshell/1
 
-services:
-  - AnalyticsSDK
-  - CampaignStandard
-  - Runtime
+# these are the optional environment variables
+# these values may be used instead of interactive input
+env:
+  - SOMEKEY
+
+# workspaces required. Runtime namespaces are added by default for each workspace,
+# if Runtime is one of the Services listed below (all or nothing)
+# Staging and Production are the defaults if not provided (if a Service is set)
+workspaces:
+  - Staging
+  - Production
+  - Development
+
+# required apis, listed by their SDK code
+# any config for the api is listed under the api
+apis:
+  - code: AnalyticsSDK
+    credentials: OAuth
+  - code: CampaignStandard
+  - code: Runtime
+  - code: Events
+    hooks:
+      - postdeploy: some command
+  - code: Mesh
+    endpoints:
+      - my-action: https://some-action.com/action
+
+runtime: true
